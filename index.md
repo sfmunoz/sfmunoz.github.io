@@ -8,10 +8,10 @@ layout: default
 sfmunoz github account
 
 - [https://github.com/sfmunoz](https://github.com/sfmunoz)
-- [https://sfmunoz.github.io](https://sfmunoz.github.io)
+- [https://sfmunoz.com](https://sfmunoz.com)
 
 ## logit
 
 Simple Golang logging/slog library
 
-- [https://sfmunoz.github.io/logit/](https://sfmunoz.github.io/logit/)
+- [https://sfmunoz.com/logit/](https://sfmunoz.com/logit/)
