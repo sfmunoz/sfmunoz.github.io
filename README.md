@@ -1,3 +1,3 @@
-# sfmunoz.github.io
+# sfmunoz.com
 
-[https://sfmunoz.github.io](https://sfmunoz.github.io) repository.
+[https://sfmunoz.com](https://sfmunoz.com) repository.
