@@ -1,14 +1,13 @@
 ---
 title: sfmunoz
+desc: sfmunoz GitHub account
 layout: default
 ---
 
-# {{ page.title }}
+Some [sfmunoz](https://github.com/sfmunoz) account related links:
 
-sfmunoz github account
-
-- [https://github.com/sfmunoz](https://github.com/sfmunoz)
-- [https://sfmunoz.com](https://sfmunoz.com)
+- [https://github.com/sfmunoz](https://github.com/sfmunoz): sfmunoz GitHub account
+- [https://sfmunoz.com](https://sfmunoz.com): this page
 
 ## logit
 
