@@ -5,9 +5,9 @@
 </script>
 
 <svelte:head>
+  <title>sfmunoz</title>
   <link rel="icon" href={favicon} />
   <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
-  <title>sfmunoz</title>
   <style>
     .icon {
       vertical-align: sub;
@@ -22,6 +22,9 @@
     }
     .avatar {
       border-radius: 10em;
+    }
+    body > header {
+      background-color: #d5f7ff;
     }
   </style>
 </svelte:head>
