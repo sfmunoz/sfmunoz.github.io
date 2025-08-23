@@ -44,12 +44,14 @@
           <div
             class="bg-muted/50 min-h-[100vh] flex-1 rounded-md md:min-h-min p-4 flex flex-col gap-5"
           >
-            <h1>sfmunoz</h1>
-            <Separator />
-            <p>
-              Welcome!! This page is under construction so don't expect loads of
-              contents
-            </p>
+            <article class="prose dark:prose-invert">
+              <h1>sfmunoz</h1>
+              <hr />
+              <p>
+                Welcome!! This page is under construction so don't expect loads
+                of contents
+              </p>
+            </article>
           </div>
         </div>
       </Sidebar.Inset>
