@@ -6,6 +6,7 @@
   import { Separator } from "$lib/components/ui/separator/index.js";
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import DarkMode from "$lib/components/DarkMode";
+  import { innerWidth, innerHeight } from "svelte/reactivity/window";
 
   const sidebar = Sidebar.useSidebar();
 </script>
@@ -32,6 +33,9 @@
       </Breadcrumb.List>
     </Breadcrumb.Root>
     <DarkMode />
+    {#if import.meta.env.DEV}
+      <span>{innerWidth.current}x{innerHeight.current}</span>
+    {/if}
     <!-- <SearchForm class="w-full sm:ml-auto sm:w-auto" /> -->
   </div>
 </header>
