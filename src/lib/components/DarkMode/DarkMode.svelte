@@ -26,8 +26,8 @@
   );
   $effect(() => localStorage.setItem("theme", usrChoice));
   $effect(() => {
-    if (lightMode) document.body.classList.remove("dark");
-    else document.body.classList.add("dark");
+    if (lightMode) document.documentElement.classList.remove("dark");
+    else document.documentElement.classList.add("dark");
   });
   const usrThemes: UsrChoice[] = ["light", "system", "dark"];
 </script>
