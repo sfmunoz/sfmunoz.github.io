@@ -1,10 +1,10 @@
 <script lang="ts">
   import { IsMobile } from "$lib/hooks/is-mobile.svelte.js";
+  import { MediaQuery } from "svelte/reactivity";
   import { browser } from "$app/environment";
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Tooltip from "$lib/components/ui/tooltip/index.js";
   import { Sun, Moon, Monitor, ShieldQuestion } from "@lucide/svelte";
-
   let isMobile = new IsMobile();
   type UsrChoice = "light" | "dark" | "system";
   type SysChoice = "light" | "dark" | "unknown";
@@ -12,10 +12,14 @@
   let usrChoice: UsrChoice = $state(
     t === "light" || t === "dark" ? t : "system"
   );
-  let lightMedia: boolean = $state(false);
-  let darkMedia: boolean = $state(false);
+  const ligthMedia = new MediaQuery("prefers-color-scheme: light");
+  const darkMedia = new MediaQuery("prefers-color-scheme: dark");
   let sysChoice: SysChoice = $derived(
-    lightMedia === darkMedia ? "unknown" : darkMedia ? "dark" : "light"
+    ligthMedia.current === darkMedia.current
+      ? "unknown"
+      : darkMedia.current
+        ? "dark"
+        : "light"
   );
   let lightMode: boolean = $derived(
     usrChoice === "light" || (usrChoice !== "dark" && sysChoice !== "dark")
@@ -24,24 +28,6 @@
   $effect(() => {
     if (lightMode) document.body.classList.remove("dark");
     else document.body.classList.add("dark");
-  });
-  $effect(() => {
-    const m = window.matchMedia("(prefers-color-scheme: light)");
-    lightMedia = m.matches;
-    const f = (e: MediaQueryListEvent) => (lightMedia = e.matches);
-    m.addEventListener("change", f);
-    return () => {
-      m.removeEventListener("change", f);
-    };
-  });
-  $effect(() => {
-    const m = window.matchMedia("(prefers-color-scheme: dark)");
-    darkMedia = m.matches;
-    const f = (e: MediaQueryListEvent) => (darkMedia = e.matches);
-    m.addEventListener("change", f);
-    return () => {
-      m.removeEventListener("change", f);
-    };
   });
   const usrThemes: UsrChoice[] = ["light", "system", "dark"];
 </script>
