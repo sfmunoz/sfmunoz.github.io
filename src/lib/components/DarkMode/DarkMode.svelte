@@ -1,13 +1,10 @@
 <script lang="ts">
+  import { IsMobile } from "$lib/hooks/is-mobile.svelte.js";
   import { browser } from "$app/environment";
-  import Button from "flowbite-svelte/Button.svelte";
-  import SunSolid from "flowbite-svelte-icons/SunSolid.svelte";
-  import MoonSolid from "flowbite-svelte-icons/MoonSolid.svelte";
-  import DesktopPcOutline from "flowbite-svelte-icons/DesktopPcOutline.svelte";
-  import QuestionCircleOutline from "flowbite-svelte-icons/QuestionCircleOutline.svelte";
-  import type { NavbarBreakpoint } from "flowbite-svelte"; // doesn't seem to hurt compilation time
+  import { Button } from "$lib/components/ui/button/index.js";
+  import { Sun, Moon, Monitor, ShieldQuestion } from "@lucide/svelte";
 
-  let { breakpoint }: { breakpoint: NavbarBreakpoint } = $props();
+  let isMobile = new IsMobile();
   type UsrChoice = "light" | "dark" | "system";
   type SysChoice = "light" | "dark" | "unknown";
   const t: string | null = browser ? localStorage.getItem("theme") : null;
@@ -50,36 +47,35 @@
 
 {#snippet icon(t: UsrChoice)}
   {#if t === "light"}
-    <SunSolid />
+    <Sun />
   {:else if t === "dark"}
-    <MoonSolid />
+    <Moon />
   {:else if t === "system"}
     {#if sysChoice === "light"}
-      <DesktopPcOutline />
-      <SunSolid
-        class="absolute -translate-x-[60%] -translate-y-[50%] scale-80"
-      />
+      <Monitor />
+      <Sun class="absolute -translate-x-[60%] -translate-y-[50%] scale-80" />
     {:else if sysChoice === "dark"}
-      <DesktopPcOutline />
-      <MoonSolid
-        class="absolute translate-x-[60%] -translate-y-[50%] scale-80"
-      />
+      <Monitor />
+      <Moon class="absolute translate-x-[60%] -translate-y-[50%] scale-80" />
     {:else}
-      <QuestionCircleOutline class="text-red-700 dark:text-red-300" />
+      <ShieldQuestion class="text-red-700 dark:text-red-300" />
     {/if}
   {/if}
 {/snippet}
 
 <div
-  class={`grid grid-cols-1 ${breakpoint}:grid-cols-3 ml-4 justify-center items-center gap-1`}
+  class={[
+    "grid grid-cols-3 w-auto ml-auto",
+    isMobile.current ? "gap-1" : "gap-2",
+  ]}
 >
   {#each usrThemes as t (t)}
     <Button
       id={t}
+      variant="secondary"
+      size="icon"
+      class={isMobile.current ? "size-6" : "size-9"}
       disabled={usrChoice === t}
-      color={usrChoice === t ? "primary" : "secondary"}
-      size="xs"
-      outline
       onclick={() => (usrChoice = t)}>{@render icon(t)}</Button
     >
   {/each}
