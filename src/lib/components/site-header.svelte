@@ -5,6 +5,7 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { Separator } from "$lib/components/ui/separator/index.js";
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+  import DarkMode from "$lib/components/DarkMode";
 
   const sidebar = Sidebar.useSidebar();
 </script>
@@ -30,6 +31,7 @@
         </Breadcrumb.Item> -->
       </Breadcrumb.List>
     </Breadcrumb.Root>
+    <DarkMode />
     <!-- <SearchForm class="w-full sm:ml-auto sm:w-auto" /> -->
   </div>
 </header>
