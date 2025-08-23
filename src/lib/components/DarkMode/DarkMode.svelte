@@ -2,6 +2,7 @@
   import { IsMobile } from "$lib/hooks/is-mobile.svelte.js";
   import { browser } from "$app/environment";
   import { Button } from "$lib/components/ui/button/index.js";
+  import * as Tooltip from "$lib/components/ui/tooltip/index.js";
   import { Sun, Moon, Monitor, ShieldQuestion } from "@lucide/svelte";
 
   let isMobile = new IsMobile();
@@ -70,13 +71,22 @@
   ]}
 >
   {#each usrThemes as t (t)}
-    <Button
-      id={t}
-      variant="secondary"
-      size="icon"
-      class={isMobile.current ? "size-6" : "size-9"}
-      disabled={usrChoice === t}
-      onclick={() => (usrChoice = t)}>{@render icon(t)}</Button
-    >
+    <Tooltip.Provider>
+      <Tooltip.Root>
+        <Tooltip.Trigger
+          ><Button
+            id={t}
+            variant="secondary"
+            size="icon"
+            class={isMobile.current ? "size-6" : "size-9"}
+            disabled={usrChoice === t}
+            onclick={() => (usrChoice = t)}>{@render icon(t)}</Button
+          ></Tooltip.Trigger
+        >
+        <Tooltip.Content>
+          <p>{t}</p>
+        </Tooltip.Content>
+      </Tooltip.Root>
+    </Tooltip.Provider>
   {/each}
 </div>
