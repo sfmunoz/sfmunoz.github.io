@@ -1,3 +1,19 @@
+<!--
+  Copy the following anti-FOUC snippet to 'src/app.html -> head' section
+  right after '%sveltekit.head%' line:
+
+  <script>
+    // This snippet must match DarkMode.svelte config/values
+    (() => {
+      const t = localStorage.getItem("theme");
+      const s = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (t === "dark" || (s && (!t || t === "system")))
+        document.documentElement.classList.add("dark");
+      else document.documentElement.classList.remove("dark");
+    })();
+  </script>
+-->
+
 <script lang="ts">
   import { IsMobile } from "$lib/hooks/is-mobile.svelte.js";
   import { MediaQuery } from "svelte/reactivity";
