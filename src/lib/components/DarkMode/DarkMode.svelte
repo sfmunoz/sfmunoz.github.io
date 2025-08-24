@@ -1,3 +1,19 @@
+<!--
+  Copy the following anti-FOUC snippet to 'src/app.html -> head' section
+  right after '%sveltekit.head%' line:
+
+  <script>
+    // This snippet must match DarkMode.svelte config/values
+    (() => {
+      const t = localStorage.getItem("theme");
+      const s = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (t === "dark" || (s && (!t || t === "system")))
+        document.documentElement.classList.add("dark");
+      else document.documentElement.classList.remove("dark");
+    })();
+  </script>
+-->
+
 <script lang="ts">
   import { IsMobile } from "$lib/hooks/is-mobile.svelte.js";
   import { MediaQuery } from "svelte/reactivity";
@@ -50,29 +66,26 @@
   {/if}
 {/snippet}
 
-<div
-  class={[
-    "grid grid-cols-3 w-auto ml-auto",
-    isMobile.current ? "gap-1" : "gap-2",
-  ]}
->
-  {#each usrThemes as t (t)}
-    <Tooltip.Provider>
-      <Tooltip.Root>
-        <Tooltip.Trigger
-          ><Button
-            id={t}
-            variant="secondary"
-            size="icon"
-            class={isMobile.current ? "size-6" : "size-9"}
-            disabled={usrChoice === t}
-            onclick={() => (usrChoice = t)}>{@render icon(t)}</Button
-          ></Tooltip.Trigger
-        >
-        <Tooltip.Content>
-          <p>{t}</p>
-        </Tooltip.Content>
-      </Tooltip.Root>
-    </Tooltip.Provider>
-  {/each}
+<div class="w-auto ml-auto">
+  <Tooltip.Provider>
+    <Tooltip.Root>
+      <Tooltip.Trigger>
+        <div class={["grid grid-cols-3", isMobile.current ? "gap-1" : "gap-2"]}>
+          {#each usrThemes as t (t)}
+            <Button
+              id={t}
+              variant="secondary"
+              size="icon"
+              class={isMobile.current ? "size-6" : "size-9"}
+              disabled={usrChoice === t}
+              onclick={() => (usrChoice = t)}>{@render icon(t)}</Button
+            >
+          {/each}
+        </div>
+      </Tooltip.Trigger>
+      <Tooltip.Content>
+        <p>theme: light | system | dark</p>
+      </Tooltip.Content>
+    </Tooltip.Root>
+  </Tooltip.Provider>
 </div>
