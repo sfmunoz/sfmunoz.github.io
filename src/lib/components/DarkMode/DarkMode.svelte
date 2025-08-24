@@ -15,16 +15,18 @@
 -->
 
 <script lang="ts">
+  import { onMount } from "svelte";
   import { IsMobile } from "$lib/hooks/is-mobile.svelte.js";
   import { MediaQuery } from "svelte/reactivity";
   import { browser } from "$app/environment";
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Tooltip from "$lib/components/ui/tooltip/index.js";
   import { Sun, Moon, Monitor, ShieldQuestion } from "@lucide/svelte";
+  const themeKey = "theme";
   let isMobile = new IsMobile();
   type UsrChoice = "light" | "dark" | "system";
   type SysChoice = "light" | "dark" | "unknown";
-  const t: string | null = browser ? localStorage.getItem("theme") : null;
+  const t: string | null = browser ? localStorage.getItem(themeKey) : null;
   let usrChoice: UsrChoice = $state(
     t === "light" || t === "dark" ? t : "system"
   );
@@ -40,12 +42,25 @@
   let lightMode: boolean = $derived(
     usrChoice === "light" || (usrChoice !== "dark" && sysChoice !== "dark")
   );
-  $effect(() => localStorage.setItem("theme", usrChoice));
+  $effect(() => localStorage.setItem(themeKey, usrChoice));
   $effect(() => {
     if (lightMode) document.documentElement.classList.remove("dark");
     else document.documentElement.classList.add("dark");
   });
   const usrThemes: UsrChoice[] = ["light", "system", "dark"];
+  onMount(() => {
+    if (!browser) return;
+    const thList = usrThemes.map((t) => t as string);
+    const cb = (e: StorageEvent) => {
+      if (e.key === themeKey && e.newValue && thList.includes(e.newValue)) {
+        usrChoice = e.newValue as UsrChoice;
+      }
+    };
+    window.addEventListener("storage", cb);
+    return () => {
+      window.removeEventListener("storage", cb);
+    };
+  });
 </script>
 
 {#snippet icon(t: UsrChoice)}
@@ -76,7 +91,10 @@
               id={t}
               variant="secondary"
               size="icon"
-              class={isMobile.current ? "size-6" : "size-9"}
+              class={[
+                "hover:cursor-pointer",
+                isMobile.current ? "size-6" : "size-9",
+              ]}
               disabled={usrChoice === t}
               onclick={() => (usrChoice = t)}>{@render icon(t)}</Button
             >
