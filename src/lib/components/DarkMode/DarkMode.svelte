@@ -66,29 +66,26 @@
   {/if}
 {/snippet}
 
-<div
-  class={[
-    "grid grid-cols-3 w-auto ml-auto",
-    isMobile.current ? "gap-1" : "gap-2",
-  ]}
->
-  {#each usrThemes as t (t)}
-    <Tooltip.Provider>
-      <Tooltip.Root>
-        <Tooltip.Trigger
-          ><Button
-            id={t}
-            variant="secondary"
-            size="icon"
-            class={isMobile.current ? "size-6" : "size-9"}
-            disabled={usrChoice === t}
-            onclick={() => (usrChoice = t)}>{@render icon(t)}</Button
-          ></Tooltip.Trigger
-        >
-        <Tooltip.Content>
-          <p>{t}</p>
-        </Tooltip.Content>
-      </Tooltip.Root>
-    </Tooltip.Provider>
-  {/each}
+<div class="w-auto ml-auto">
+  <Tooltip.Provider>
+    <Tooltip.Root>
+      <Tooltip.Trigger>
+        <div class={["grid grid-cols-3", isMobile.current ? "gap-1" : "gap-2"]}>
+          {#each usrThemes as t (t)}
+            <Button
+              id={t}
+              variant="secondary"
+              size="icon"
+              class={isMobile.current ? "size-6" : "size-9"}
+              disabled={usrChoice === t}
+              onclick={() => (usrChoice = t)}>{@render icon(t)}</Button
+            >
+          {/each}
+        </div>
+      </Tooltip.Trigger>
+      <Tooltip.Content>
+        <p>theme: light | system | dark</p>
+      </Tooltip.Content>
+    </Tooltip.Root>
+  </Tooltip.Provider>
 </div>
