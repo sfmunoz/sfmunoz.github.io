@@ -9,22 +9,25 @@
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import DarkMode from "$lib/components/DarkMode";
   import { innerWidth, innerHeight } from "svelte/reactivity/window";
-  const crumbs: { name: string; href: string; link: boolean }[] = [
-    { name: "sfmunoz.com", href: resolve("/"), link: true },
-  ];
-  page.url.pathname
-    .split("/")
-    .filter(Boolean)
-    .forEach((name: string) => {
-      const h = crumbs[0].href;
-      crumbs.unshift({
-        name,
-        href: h + (h.endsWith("/") ? "" : "/") + name,
-        link: true,
+  const crumbs = $derived.by(() => {
+    const ret: { name: string; href: string; link: boolean }[] = [
+      { name: "sfmunoz.com", href: resolve("/"), link: true },
+    ];
+    page.url.pathname
+      .split("/")
+      .filter(Boolean)
+      .forEach((name: string) => {
+        const h = ret[0].href;
+        ret.unshift({
+          name,
+          href: h + (h.endsWith("/") ? "" : "/") + name,
+          link: true,
+        });
       });
-    });
-  crumbs[0].link = false;
-  crumbs.reverse();
+    ret[0].link = false;
+    ret.reverse();
+    return ret;
+  });
   const sidebar = Sidebar.useSidebar();
 </script>
 
