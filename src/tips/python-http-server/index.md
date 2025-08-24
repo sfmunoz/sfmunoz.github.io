@@ -1,3 +1,7 @@
+---
+title: Python HTTP server
+---
+
 # Python HTTP server
 
 Python HTTP server examples

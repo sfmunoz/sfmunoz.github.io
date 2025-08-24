@@ -1,3 +1,7 @@
+---
+title: Python HTTP client
+---
+
 # Python HTTP client
 
 Python HTTP client examples
