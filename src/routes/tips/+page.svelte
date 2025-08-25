@@ -3,9 +3,9 @@
   import type { PageProps } from "./$types";
 
   let { data }: PageProps = $props();
-  let links = data.posts.map((p) => ({
-    name: `${p.data.title}`,
-    href: resolve(`/tips/${p.slug}`),
+  let links = data.tips.map((tip) => ({
+    name: `${tip.data.title}`,
+    href: resolve(`/tips/${tip.slug}`),
   }));
 </script>
 
