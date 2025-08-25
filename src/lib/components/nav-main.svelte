@@ -1,23 +1,108 @@
 <script lang="ts">
+  import Activity from "@lucide/svelte/icons/activity";
+  import Pause from "@lucide/svelte/icons/pause";
   import type { Component } from "svelte";
   import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import * as Collapsible from "$lib/components/ui/collapsible/index.js";
 
-  let {
-    items,
-  }: {
-    items: {
+  interface itemsDef {
+    title: string;
+    url: string;
+    icon: Component;
+    isActive?: boolean;
+    items?: {
       title: string;
       url: string;
-      icon: Component;
-      isActive?: boolean;
-      items?: {
-        title: string;
-        url: string;
-      }[];
     }[];
-  } = $props();
+  }
+
+  const items: itemsDef[] = [
+    {
+      title: "Active",
+      url: "#",
+      icon: Activity,
+      isActive: true,
+      items: [
+        {
+          title: "logit",
+          url: "https://github.com/sfmunoz/logit",
+        },
+        {
+          title: "hugo-playground",
+          url: "https://github.com/sfmunoz/hugo-playground",
+        },
+        {
+          title: "sfmunoz.github.io",
+          url: "https://github.com/sfmunoz/sfmunoz.github.io",
+        },
+        {
+          title: "sveltekit-playground",
+          url: "https://github.com/sfmunoz/sveltekit-playground",
+        },
+      ],
+    },
+    {
+      title: "Paused",
+      url: "#",
+      icon: Pause,
+      isActive: true,
+      items: [
+        {
+          title: "astronvim-conf (forked)",
+          url: "https://github.com/sfmunoz/astronvim-conf",
+        },
+        {
+          title: "eleventy-playground",
+          url: "https://github.com/sfmunoz/eleventy-playground",
+        },
+        {
+          title: "golang-playground",
+          url: "https://github.com/sfmunoz/golang-playground",
+        },
+        {
+          title: "kickstart.nvim (forked)",
+          url: "https://github.com/sfmunoz/kickstart.nvim",
+        },
+        {
+          title: "multi-tpl",
+          url: "https://github.com/sfmunoz/multi-tpl",
+        },
+        {
+          title: "nextjs-dashboard",
+          url: "https://github.com/sfmunoz/nextjs-dashboard",
+        },
+        {
+          title: "nim-lzma (forked)",
+          url: "https://github.com/sfmunoz/nim-lzma",
+        },
+        {
+          title: "nim-playground",
+          url: "https://github.com/sfmunoz/nim-playground",
+        },
+        {
+          title: "postgres-image",
+          url: "https://github.com/sfmunoz/postgres-image",
+        },
+        {
+          title: "rails-playground",
+          url: "https://github.com/sfmunoz/rails-playground",
+        },
+        {
+          title: "ruby-playground",
+          url: "https://github.com/sfmunoz/ruby-playground",
+        },
+        {
+          title: "svelte-playground",
+          url: "https://github.com/sfmunoz/svelte-playground",
+        },
+        {
+          title: "tools",
+          url: "https://github.com/sfmunoz/tools",
+        },
+      ],
+    },
+  ];
 </script>
 
 <Sidebar.Group>
