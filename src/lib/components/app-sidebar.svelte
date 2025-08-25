@@ -1,21 +1,18 @@
 <script lang="ts">
-  import type { ComponentProps } from "svelte";
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+  import NavDocs from "./nav-docs.svelte";
   import NavMain from "./nav-main.svelte";
   // import NavProjects from "./nav-projects.svelte";
   // import NavSecondary from "./nav-secondary.svelte";
   // import NavUser from "./nav-user.svelte";
   import HouseIcon from "@lucide/svelte/icons/house";
+  import type { getTipsRet } from "$lib/getTips";
 
-  let {
-    ref = $bindable(null),
-    ...restProps
-  }: ComponentProps<typeof Sidebar.Root> = $props();
+  let { tips }: { tips: getTipsRet[] } = $props();
 </script>
 
 <Sidebar.Root
   class="top-(--header-height) h-[calc(100svh-var(--header-height))]!"
-  {...restProps}
 >
   <Sidebar.Header>
     <Sidebar.Menu>
@@ -39,6 +36,7 @@
     </Sidebar.Menu>
   </Sidebar.Header>
   <Sidebar.Content>
+    <NavDocs {tips} />
     <NavMain />
     <!-- <NavProjects /> -->
     <!-- <NavSecondary /> -->

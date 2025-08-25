@@ -4,7 +4,7 @@ import matter from "gray-matter";
 
 const folder = path.resolve("src/tips");
 
-interface getTipsRet {
+export interface getTipsRet {
   slug: string;
   data: { [key: string]: any };
   content: string;

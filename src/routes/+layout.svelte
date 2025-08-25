@@ -4,8 +4,9 @@
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import SiteHeader from "$lib/components/site-header.svelte";
   import AppSidebar from "$lib/components/app-sidebar.svelte";
+  import type { LayoutProps } from "./$types";
 
-  let { children } = $props();
+  let { data, children }: LayoutProps = $props();
 </script>
 
 <svelte:head>
@@ -17,7 +18,7 @@
   <Sidebar.Provider class="flex flex-col">
     <SiteHeader />
     <div class="flex flex-1">
-      <AppSidebar />
+      <AppSidebar tips={data.tips} />
       <Sidebar.Inset>
         {@render children?.()}
       </Sidebar.Inset>
