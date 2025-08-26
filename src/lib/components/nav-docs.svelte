@@ -14,69 +14,54 @@
     href: resolve(`/tips/${tip.slug}`),
   }));
 
-  interface itemsDef {
-    title: string;
-    url: string;
-    icon: Component;
-    isActive?: boolean;
-  }
-
-  const items: itemsDef[] = [
-    {
-      title: "Tips",
-      url: "/tips",
-      icon: File,
-      isActive: true,
-    },
-  ];
+  const tipsTitle = "Tips";
+  const tipsUrl = resolve("/tips");
 </script>
 
 <Sidebar.Group>
   <Sidebar.GroupLabel>Docs</Sidebar.GroupLabel>
   <Sidebar.Menu>
-    {#each items as item (item.title)}
-      <Collapsible.Root open={item.isActive}>
-        {#snippet child({ props })}
-          <Sidebar.MenuItem {...props}>
-            <Sidebar.MenuButton tooltipContent={item.title}>
+    <Collapsible.Root open={true}>
+      {#snippet child({ props })}
+        <Sidebar.MenuItem {...props}>
+          <Sidebar.MenuButton tooltipContent={tipsTitle}>
+            {#snippet child({ props })}
+              <a href={tipsUrl} {...props}>
+                <File />
+                <span>{tipsTitle}</span>
+              </a>
+            {/snippet}
+          </Sidebar.MenuButton>
+          {#if links.length}
+            <Collapsible.Trigger>
               {#snippet child({ props })}
-                <a href={item.url} {...props}>
-                  <item.icon />
-                  <span>{item.title}</span>
-                </a>
+                <Sidebar.MenuAction
+                  {...props}
+                  class="data-[state=open]:rotate-90"
+                >
+                  <ChevronRightIcon />
+                  <span class="sr-only">Toggle</span>
+                </Sidebar.MenuAction>
               {/snippet}
-            </Sidebar.MenuButton>
-            {#if links.length}
-              <Collapsible.Trigger>
-                {#snippet child({ props })}
-                  <Sidebar.MenuAction
-                    {...props}
-                    class="data-[state=open]:rotate-90"
-                  >
-                    <ChevronRightIcon />
-                    <span class="sr-only">Toggle</span>
-                  </Sidebar.MenuAction>
-                {/snippet}
-              </Collapsible.Trigger>
-              <Collapsible.Content>
-                <Sidebar.MenuSub>
-                  {#each links as link (link.href)}
-                    <Sidebar.MenuSubItem>
-                      <Sidebar.MenuSubButton>
-                        {#snippet child({ props })}
-                          <a href={link.href} {...props}>
-                            <span>{link.name}</span>
-                          </a>
-                        {/snippet}
-                      </Sidebar.MenuSubButton>
-                    </Sidebar.MenuSubItem>
-                  {/each}
-                </Sidebar.MenuSub>
-              </Collapsible.Content>
-            {/if}
-          </Sidebar.MenuItem>
-        {/snippet}
-      </Collapsible.Root>
-    {/each}
+            </Collapsible.Trigger>
+            <Collapsible.Content>
+              <Sidebar.MenuSub>
+                {#each links as link (link.href)}
+                  <Sidebar.MenuSubItem>
+                    <Sidebar.MenuSubButton>
+                      {#snippet child({ props })}
+                        <a href={link.href} {...props}>
+                          <span>{link.name}</span>
+                        </a>
+                      {/snippet}
+                    </Sidebar.MenuSubButton>
+                  </Sidebar.MenuSubItem>
+                {/each}
+              </Sidebar.MenuSub>
+            </Collapsible.Content>
+          {/if}
+        </Sidebar.MenuItem>
+      {/snippet}
+    </Collapsible.Root>
   </Sidebar.Menu>
 </Sidebar.Group>
