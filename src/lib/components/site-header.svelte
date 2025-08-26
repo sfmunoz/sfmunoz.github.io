@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { page } from "$app/state";
+  import { resolve } from "$app/paths";
   import SidebarIcon from "@lucide/svelte/icons/sidebar";
   //   import SearchForm from "./search-form.svelte";
   import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
@@ -7,7 +9,25 @@
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import DarkMode from "$lib/components/DarkMode";
   import { innerWidth, innerHeight } from "svelte/reactivity/window";
-
+  const crumbs = $derived.by(() => {
+    const ret: { name: string; href: string; link: boolean }[] = [
+      { name: "sfmunoz.com", href: resolve("/"), link: true },
+    ];
+    page.url.pathname
+      .split("/")
+      .filter(Boolean)
+      .forEach((name: string) => {
+        const h = ret[0].href;
+        ret.unshift({
+          name,
+          href: h + (h.endsWith("/") ? "" : "/") + name,
+          link: true,
+        });
+      });
+    ret[0].link = false;
+    ret.reverse();
+    return ret;
+  });
   const sidebar = Sidebar.useSidebar();
 </script>
 
@@ -21,15 +41,18 @@
     <Separator orientation="vertical" class="mr-2 h-4" />
     <Breadcrumb.Root class="hidden sm:block">
       <Breadcrumb.List>
-        <Breadcrumb.Item>
-          <Breadcrumb.Page>sfmunoz.com</Breadcrumb.Page>
-        </Breadcrumb.Item>
-        <!-- <Breadcrumb.Separator />
-        <Breadcrumb.Item>
-          <Breadcrumb.Link href="https://sfmunoz.com"
-            >sfmunoz.com</Breadcrumb.Link
-          >
-        </Breadcrumb.Item> -->
+        {#each crumbs as crumb, i (crumb.href)}
+          {#if i > 0}
+            <Breadcrumb.Separator />
+          {/if}
+          <Breadcrumb.Item>
+            {#if crumb.link}
+              <Breadcrumb.Link href={crumb.href}>{crumb.name}</Breadcrumb.Link>
+            {:else}
+              <Breadcrumb.Page>{crumb.name}</Breadcrumb.Page>
+            {/if}
+          </Breadcrumb.Item>
+        {/each}
       </Breadcrumb.List>
     </Breadcrumb.Root>
     <DarkMode />
