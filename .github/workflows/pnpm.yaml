@@ -28,6 +28,11 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+      - name: Checkout content repo
+        uses: actions/checkout@v4
+        with:
+          repository: sfmunoz/content
+          path: src/content
       - name: pnpm setup
         uses: pnpm/action-setup@v2
         with:
