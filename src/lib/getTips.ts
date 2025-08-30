@@ -35,6 +35,13 @@ export interface getTipsRet {
   content: string;
 }
 
+export const getTip = (slug: string): string => {
+  const folder = cmsFolder();
+  const fname = path.join(folder, "public", "tips", slug, "index.html");
+  if (!fs.existsSync(fname)) throw "getTip(): cannot find " + slug;
+  return fs.readFileSync(fname, "utf-8");
+};
+
 export const getTips = (): getTipsRet[] => {
   if (fs.existsSync(contentFolder)) {
     return fs
