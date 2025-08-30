@@ -4,8 +4,8 @@
 
   let { data }: PageProps = $props();
   let links = data.tips.map((tip) => ({
-    name: `${tip.data.title}`,
-    href: resolve(`/tips/${tip.slug}`),
+    name: `${tip.title}`,
+    href: `${tip.link}`,
   }));
 </script>
 
