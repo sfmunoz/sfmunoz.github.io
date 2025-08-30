@@ -26,8 +26,8 @@ export const getTips = (): getTipsRet[] => {
         // m[1] = python-subprocess
         const filePath = path.join(contentFolder, m[0]);
         const slug = m[1];
-        const data = { title: slug };
-        const content = fs.readFileSync(filePath, "utf-8");
+        const buf = fs.readFileSync(filePath, "utf-8");
+        const { data, content } = matter(buf);
         return { slug, data, content };
       })
       .sort((a, b) => a.slug.localeCompare(b.slug));
