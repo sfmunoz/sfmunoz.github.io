@@ -1,22 +1,18 @@
 ---
-title: Python HTTP server
+title: 'Python HTTP server'
+summary: 'Python HTTP server examples'
+url: 'tips/:slug'
+date: '2025-06-19T20:07:49Z'
+categories: ['tips']
+tags: ['python','http','server']
+draft: false
+legacy_id: 5090
 ---
-
-# Python HTTP server
-
-Python HTTP server examples
-
-- [References](https://gist.github.com/sfmunoz/47b9e237776f491f71dcf8726b780ee6#references)
-- [Example](https://gist.github.com/sfmunoz/47b9e237776f491f71dcf8726b780ee6#example)
-  - [Execution](https://gist.github.com/sfmunoz/47b9e237776f491f71dcf8726b780ee6#execution)
-  - [Example: GET](https://gist.github.com/sfmunoz/47b9e237776f491f71dcf8726b780ee6#example-get)
-  - [Example: POST](https://gist.github.com/sfmunoz/47b9e237776f491f71dcf8726b780ee6#example-post)
-- [Alternatives](https://gist.github.com/sfmunoz/47b9e237776f491f71dcf8726b780ee6#alternatives)
 
 ## References
 
 - https://docs.python.org/3/library/http.server.html
-- [Python HTTP client](https://gist.github.com/sfmunoz/fcb08d624b27128111e1961f5b143051)
+- [Python HTTP client]({{< relref "python-http-client" >}})
 
 ## Example
 
@@ -77,9 +73,7 @@ if __name__ == "__main__":
 ```
 $ python3 http-server.py
 ```
-
 ### Example: GET
-
 ```
 $ curl -v http://127.0.0.1:4444/get-file.txt
 *   Trying 127.0.0.1:4444...
@@ -103,9 +97,7 @@ $ curl -v http://127.0.0.1:4444/get-file.txt
 }
 * Closing connection 0
 ```
-
 ### Example: POST
-
 ```
 $ curl -v -d '{"req":"request"}' -H Content-Type:application/json http://127.0.0.1:4444/post-file.txt
 *   Trying 127.0.0.1:4444...
@@ -152,27 +144,18 @@ with socketserver.TCPServer(("", PORT), Handler) as httpd:
     print("serving at port", PORT)
     httpd.serve_forever()
 ```
-
 ```
 python -m http.server
 ```
-
 ```
 python -m http.server 9000
 ```
-
 ```
 python -m http.server --bind 127.0.0.1
 ```
-
 ```
 python -m http.server --directory /tmp/
 ```
-
 ```
 python -m http.server --protocol HTTP/1.1
 ```
-
----
-
-#tip 5090
