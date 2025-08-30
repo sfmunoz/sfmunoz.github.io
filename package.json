@@ -37,8 +37,5 @@
 		"onlyBuiltDependencies": [
 			"esbuild"
 		]
-	},
-	"dependencies": {
-		"marked": "^16.2.0"
 	}
 }
