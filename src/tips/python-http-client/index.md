@@ -1,20 +1,19 @@
 ---
-title: Python HTTP client
+title: 'Python HTTP client'
+summary: 'Python HTTP client examples'
+url: 'tips/:slug'
+date: '2025-06-19T20:15:25Z'
+categories: ['tips']
+tags: ['python','http','client']
+draft: false
+legacy_id: 5091
 ---
-
-# Python HTTP client
-
-Python HTTP client examples
-
-- [References](https://gist.github.com/sfmunoz/fcb08d624b27128111e1961f5b143051#references)
-- [http.client (stdlib)](https://gist.github.com/sfmunoz/fcb08d624b27128111e1961f5b143051#httpclient-stdlib)
-- [requests](https://gist.github.com/sfmunoz/fcb08d624b27128111e1961f5b143051#requests)
 
 ## References
 
 - https://docs.python.org/3/library/http.client.html
 - https://pypi.org/project/requests/
-- [Python HTTP server](https://gist.github.com/sfmunoz/47b9e237776f491f71dcf8726b780ee6)
+- [Python HTTP server]({{< relref "python-http-server" >}})
 
 ## http.client (stdlib)
 
@@ -78,7 +77,6 @@ response = conn.getresponse()
 print(response.status, response.reason)
 200 OK
 ```
-
 ```python
 import http.client
 conn = http.client.HTTPSConnection("localhost", 8080)
@@ -136,7 +134,3 @@ encoding = utf-8
   "res": "ok"
 }
 ```
-
----
-
-#tip 5091
