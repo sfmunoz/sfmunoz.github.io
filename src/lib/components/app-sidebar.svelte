@@ -6,9 +6,9 @@
   // import NavSecondary from "./nav-secondary.svelte";
   // import NavUser from "./nav-user.svelte";
   import HouseIcon from "@lucide/svelte/icons/house";
-  import type { getTipsRet } from "$lib/getTips";
+  import type { getTipListRet } from "$lib/getTips";
 
-  let { tips }: { tips: getTipsRet[] } = $props();
+  let { tips }: { tips: getTipListRet[] } = $props();
 </script>
 
 <Sidebar.Root

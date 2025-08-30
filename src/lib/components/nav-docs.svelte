@@ -1,17 +1,16 @@
 <script lang="ts">
   import File from "@lucide/svelte/icons/file";
-  import { type Component } from "svelte";
   import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import * as Collapsible from "$lib/components/ui/collapsible/index.js";
-  import type { getTipsRet } from "$lib/getTips";
+  import type { getTipListRet } from "$lib/getTips";
   import { resolve } from "$app/paths";
 
-  let { tips }: { tips: getTipsRet[] } = $props();
+  let { tips }: { tips: getTipListRet[] } = $props();
 
   let links = tips.map((tip) => ({
-    name: `${tip.data.title}`,
-    href: resolve(`/tips/${tip.slug}`),
+    name: `${tip.title}`,
+    href: `${tip.link}`,
   }));
 
   const tipsTitle = "Tips";
