@@ -55,7 +55,9 @@ jobs:
           path: src/cms
       - name: cms build
         run: |
-          bash src/cms/build.sh
+          bash src/cms/build.sh \
+            --baseURL "${{ steps.pages.outputs.base_url }}/" \
+            --cacheDir "${{ runner.temp }}/hugo_cache"
       - name: pnpm setup
         uses: pnpm/action-setup@v2
         with:
