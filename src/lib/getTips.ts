@@ -21,7 +21,7 @@ export const getTipList = (): getTipListRet[] => {
   const buf = fs.readFileSync(fname, "utf8");
   const js = JSON.parse(buf);
   if (!js.pages) throw "getTipList(): cannot find pages attribute";
-  return js.pages;
+  return js.pages.filter((p: getTipListRet) => p.title !== "");
 };
 
 export const getTip = (slug: string): string => {
