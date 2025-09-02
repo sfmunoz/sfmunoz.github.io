@@ -5,8 +5,12 @@
   import SiteHeader from "$lib/components/site-header.svelte";
   import AppSidebar from "$lib/components/app-sidebar.svelte";
   import type { LayoutProps } from "./$types";
+  import { onMount } from "svelte";
+  import mermaid from "mermaid";
 
   let { data, children }: LayoutProps = $props();
+
+  onMount(() => mermaid.initialize({ startOnLoad: false, theme: "neutral" }));
 </script>
 
 <svelte:head>
