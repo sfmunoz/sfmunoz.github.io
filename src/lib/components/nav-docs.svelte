@@ -15,6 +15,7 @@
 
   const tipsTitle = "Tips";
   const tipsUrl = resolve("/tips");
+  const sidebar = Sidebar.useSidebar();
 </script>
 
 <Sidebar.Group>
@@ -49,7 +50,11 @@
                   <Sidebar.MenuSubItem>
                     <Sidebar.MenuSubButton>
                       {#snippet child({ props })}
-                        <a href={link.href} {...props}>
+                        <a
+                          href={link.href}
+                          onclick={() => sidebar.setOpenMobile(false)}
+                          {...props}
+                        >
                           <span>{link.name}</span>
                         </a>
                       {/snippet}
