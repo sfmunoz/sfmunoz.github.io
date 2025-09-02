@@ -10,12 +10,7 @@
 
   let { data, children }: LayoutProps = $props();
 
-  onMount(() => {
-    mermaid.initialize({
-      startOnLoad: false,
-      theme: "default",
-    });
-  });
+  onMount(() => mermaid.initialize({ startOnLoad: false, theme: "neutral" }));
 </script>
 
 <svelte:head>
