@@ -11,6 +11,8 @@
   );
 </script>
 
-<div class="mx-auto mt-8 prose dark:prose-invert">
-  {@html data.html}
+<div class="bg-muted/50 rounded-md p-3 md:p-10 mx-auto max-w-250">
+  <article class="prose dark:prose-invert max-w-none">
+    {@html data.html}
+  </article>
 </div>
