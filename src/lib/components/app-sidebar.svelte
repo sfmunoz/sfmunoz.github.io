@@ -2,10 +2,10 @@
   import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import NavDocs from "./nav-docs.svelte";
   import NavMain from "./nav-main.svelte";
+  import { resolve } from "$app/paths";
   // import NavProjects from "./nav-projects.svelte";
   // import NavSecondary from "./nav-secondary.svelte";
   // import NavUser from "./nav-user.svelte";
-  import HouseIcon from "@lucide/svelte/icons/house";
   import type { getTipListRet } from "$lib/getTips";
 
   let { tips }: { tips: getTipListRet[] } = $props();
@@ -19,13 +19,13 @@
       <Sidebar.MenuItem>
         <Sidebar.MenuButton size="lg">
           {#snippet child({ props })}
-            <a href="https://sfmunoz.com" {...props}>
-              <div
-                class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
-              >
-                <HouseIcon class="size-4" />
-              </div>
-              <div class="grid flex-1 text-left text-sm leading-tight">
+            <a href={resolve("/")} {...props}>
+              <img
+                src="https://avatars.githubusercontent.com/u/46285520"
+                alt="sfmunoz.com"
+                class="rounded-full size-8"
+              />
+              <div class="grid flex-1 text-left text-sm leading-tight ml-1">
                 <span class="truncate font-medium">sfmunoz.com</span>
                 <span class="truncate text-xs">sfmunoz.com home</span>
               </div>
