@@ -53,20 +53,12 @@
       isActive: true,
       items: [
         {
-          title: "astronvim-conf (forked)",
-          url: "https://github.com/sfmunoz/astronvim-conf",
-        },
-        {
           title: "eleventy-playground",
           url: "https://github.com/sfmunoz/eleventy-playground",
         },
         {
           title: "golang-playground",
           url: "https://github.com/sfmunoz/golang-playground",
-        },
-        {
-          title: "kickstart.nvim (forked)",
-          url: "https://github.com/sfmunoz/kickstart.nvim",
         },
         {
           title: "multi-tpl",
