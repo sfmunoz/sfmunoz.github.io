@@ -2,8 +2,6 @@
 
 [https://sfmunoz.com](https://sfmunoz.com) repository
 
-- [Architecture](#architecture)
-
 ## Architecture
 
 ```mermaid
