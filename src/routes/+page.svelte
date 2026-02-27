@@ -6,6 +6,12 @@
 <div class="flex flex-1 flex-col gap-4 p-4">
   <div class="grid auto-rows-min gap-4 md:grid-cols-3">
     <div class="bg-muted/50 rounded-md p-4 flex flex-col gap-5">
+      <h1>i12e</h1>
+      <p class="italic">i12e: infrastructure</p>
+      <Separator />
+      <Button href="https://sfmunoz.com/i12e/" class="mx-auto">i12e</Button>
+    </div>
+    <div class="bg-muted/50 rounded-md p-4 flex flex-col gap-5">
       <h1>logit</h1>
       <p class="italic">Simple Golang logging/slog library</p>
       <Separator />
