@@ -25,6 +25,10 @@
       isActive: true,
       items: [
         {
+          title: "i12e",
+          url: "https://github.com/sfmunoz/i12e",
+        },
+        {
           title: "logit",
           url: "https://github.com/sfmunoz/logit",
         },
